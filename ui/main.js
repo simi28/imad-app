@@ -11,6 +11,6 @@ button.onclick=function(){
             }
         }
     };
-    request.open('GET','http://simranbhamrah1997.imad.hasura-app.io/counter',true)
+    request.open('GET','http://simranbhamrah1997.imad.hasura-app.io/counter',true);
     request.send(null);
 };
