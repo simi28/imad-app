@@ -5,7 +5,8 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var a1={
+var articles={ 
+'article1':{
     title:'Article One | Simran Bhamrah',
     heading:'Article One',
     date:'18 Feb 2018',
@@ -18,8 +19,37 @@ var a1={
                  <p>
                      This is content for my first article.This is content for my first article.This is content for my first artic.This is content for my first article.This is content for my first article.This is content for my first article.
                 </p>`
-    
+},
+'article2':{
+    title:'Article Two | Simran Bhamrah',
+    heading:'Article Two',
+    date:'19 Feb 2018',
+    content:`<p>
+                    This is content for my first article.This is content for my first article.This is content for my first articl.This is content for my first article.This is content for my first article.This is content for my first article.
+                </p>
+                <p>
+                     This is content for my first article.This is content for my first article.This is content for my first artic.This is content for my first article.This is content for my first article.This is content for my first article.
+                </p>
+                 <p>
+                     This is content for my first article.This is content for my first article.This is content for my first artic.This is content for my first article.This is content for my first article.This is content for my first article.
+                </p>`
+},
+'article3':{
+    title:'Article Three | Simran Bhamrah',
+    heading:'Article Three',
+    date:'20 Feb 2018',
+    content:`<p>
+                    This is content for my first article.This is content for my first article.This is content for my first articl.This is content for my first article.This is content for my first article.This is content for my first article.
+                </p>
+                <p>
+                     This is content for my first article.This is content for my first article.This is content for my first artic.This is content for my first article.This is content for my first article.This is content for my first article.
+                </p>
+                 <p>
+                     This is content for my first article.This is content for my first article.This is content for my first artic.This is content for my first article.This is content for my first article.This is content for my first article.
+                </p>`
+}
 };
+
 function createTemp (data) {
     var title = data.title;
     var heading = data.heading;
@@ -61,16 +91,9 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article1', function (req, res) {
-  res.send(createTemp(a1));
-});
-
-app.get('/article2', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article2.html'));
-});
-
-app.get('/article3', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article3.html'));
+app.get('/:articleName', function (req, res) {
+    var articleName=req.parans.articleName;
+  res.send(createTemp(articles[articleName]));
 });
 
 app.get('/ui/style.css', function (req, res) {
