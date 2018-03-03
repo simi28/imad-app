@@ -120,7 +120,7 @@ app.get('/counter',function(req,res){
 });
 
 app.get('articles/:articleName', function (req, res) {
-    pool.query("SELECT * from article where TITLE="+req.params.articleName,function(err,result){
+    pool.query("SELECT * from article where TITLE='"+req.params.articleName+"'",function(err,result){
         if(err) {
             res.status(500).send(err.toString());
         } else {
